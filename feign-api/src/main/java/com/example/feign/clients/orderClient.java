@@ -1,11 +1,12 @@
 package com.example.feign.clients;
 
+import com.example.feign.clients.fallback.OrderClientFallbackFactory;
 import com.example.feign.entity.AjaxResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient("paymentService")
+@FeignClient(value = "paymentService",fallbackFactory = OrderClientFallbackFactory.class)
 public interface orderClient {
 
     @GetMapping("/payment/getPaymentById/{id}")

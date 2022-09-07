@@ -5,7 +5,7 @@ spring:
     name: gateway
   cloud:
     nacos:
-      server-addr: 172.20.10.3:80
+      server-addr: 172.20.10.3:8845
     gateway:
       routes:
         - id: payment-Service #路由标识，必须唯一
