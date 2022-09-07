@@ -1,0 +1,34 @@
+server:
+  port: 8002
+#eureka:
+#  client:
+#    serviceUrl: #指定服务注册中心的地址
+#      defaultZone: http://localhost:8888/eureka/
+spring:
+  application:
+    name: orderService
+  cloud:
+    nacos: #nacos当服务提供者其中有一个挂了会主动推送push给服务消费者，eureka只能主动去拉取服务列表
+      server-addr: 172.20.10.3:80
+      discovery:
+        cluster-name: HZ
+#        namespace: 03c25868-2504-4466-8323-351481fca367 #dev环境
+        ephemeral: true #默认为临时实列，false为非临时实例，nacos对非临时实例会进行主动询问，服务挂了不是下线而是不健康
+#feign:
+#  client:
+#    config:
+#      default:
+#        logger-level: basic
+feign:
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
+paymentService:
+  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule
+#ribbon:
+#  eager-load:
+#    enabled: true
+#    clients: paymentService

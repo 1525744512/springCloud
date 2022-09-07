@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: paymentService
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: 172.20.10.3:80
+      config:
+        file-extension: yaml
